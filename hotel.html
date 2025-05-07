@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Hotel RAA Paradise offers luxury rooms, world-class dining, 
+    and top-tier facilities in Bhavnagar. Book your stay now!">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/hotel.css">
+    <title>Hotel Paradise</title>
+
+</head>
+
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <button id="open-register-sidebar"
+            style="position: absolute; top: 25px; right: 20px; padding: 8px 16px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Register
+        </button>
+
+        <h1>Hotel RAA Paradise</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#Facilities">Facilities</a></li>
+                <li><a href="#hotel-menu">hotel-menu</a></li>
+                <li><a href="#reviews">reviews</a></li>
+                <li><a href="#nearby-hotels">nearby-hotels</a></li>
+                <li><a href="#signin">Signin</a></li>
+                <li><a href="#menu">menu</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Registration Sidebar -->
+    <div id="register-sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <h2>Register</h2>
+            <form id="register-form">
+                <input type="text" id="reg-name" placeholder="Full Name" required class="input-field">
+                <input type="email" id="reg-email" placeholder="Email" required class="input-field">
+                <input type="password" id="reg-password" placeholder="Password" required class="input-field">
+                <button type="submit" class="login-button">Register</button>
+            </form>
+            <button id="close-sidebar" style="margin-top: 10px; background-color: #e74c3c;">Close</button>
+        </div>
+    </div>
+    <script>
+        // Sidebar open/close
+        const sidebar = document.getElementById('register-sidebar');
+        const openBtn = document.getElementById('open-register-sidebar');
+        const closeBtn = document.getElementById('close-sidebar');
+
+
+        openBtn.addEventListener('click', () => {
+            sidebar.classList.add('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+        });
+
+        // Register form handling
+        document.getElementById('register-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+
+            if (name && email && password) {
+                // Save to localStorage (for demo)
+                localStorage.setItem('registeredUser', JSON.stringify({ name, email }));
+                alert('Registration successful! You can now sign in.');
+                sidebar.classList.remove('open');
+            } else {
+                alert('Please fill all fields.');
+            }
+        });
+    </script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const bookingBar = document.getElementById("booking-bar");
+            if (window.scrollY > 200) {
+                bookingBar.classList.add("sticky");
+            } else {
+                bookingBar.classList.remove("sticky");
+            }
+        });
+    </script>
+
+    <!-- Include flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <input id="checkin" placeholder="Check-in Date">
+    <input id="checkout" placeholder="Check-out Date">
+
+    <script>
+        flatpickr("#checkin", {
+            minDate: "today",
+            onChange: function (selectedDates, dateStr, instance) {
+                checkoutPicker.set('minDate', dateStr);
+            }
+        });
+
+        const checkoutPicker = flatpickr("#checkout", {
+            minDate: "today"
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Welcome to Hotel RAA Paradise</h1>
+                <p>Where Luxury Meets Comfort</p>
+                <a href="#rooms" class="hero-btn">Explore Rooms</a>
+            </div>
+        </div>
+
+
+
+
+        <!-- Added hotel details section -->
+        <div class="hotel-details">
+            <h3>Hotel Information</h3>
+            <ul>
+                <li><strong>Total Rooms:</strong> 120 Rooms</li>
+                <li><strong>Total Facilities:</strong> 15+</li>
+                <li><strong>Hotel Safe:</strong> Available 24/7 for your peace of mind</li>
+                <li><strong>Address:</strong> 123 Paradise Road, City, Country</li>
+            </ul>
+        </div>
+        </div>
+    </section>
+
+
+    <section id="rooms">
+        <div class="container">
+            <h2>Our Rooms</h2>
+            <div class="room">
+                <a href="../html/laxuries.html" target="_blank">
+                    <img src="../images/room.jpg" alt="Luxury suite room with king bed and balcony view">
+                </a>
+                <p>Luxury Suite - $200 per night</p>
+                <a href="payment.html" class="book-now-btn" target="_blank">Book Now</a>
+            </div>
+            <div class="room">
+                <a href="../html/standarad.html" target="_blank">
+                    <img src="../images/room2.jpg" alt="Standard room with a queen bed and city view">
+                </a>
+                <p>Standard Room - $100 per night</p>
+                <a href="payment.html" class="book-now-btn" target="_blank">Book Now</a>
+            </div>
+            <div class="room">
+                <a href="../html/economy3.html" target="_blank">
+                    <img src="../images/room3.jpg" alt="Economy room with a single bed">
+                </a>
+                <p>Economy Room - $50 per night</p>
+                <a href="payment.html" class="book-now-btn" target="_blank">Book Now</a>
+            </div>
+        </div>
+
+    
+    <!-- menu Section -->
+    <section id="hotel-menu" style="padding: 60px 20px; text-align: center;">
+        <div class="container">
+            <h2>Explore Our Full Menu</h2>
+            <div class="menu-links" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px;">
+    
+                <a href="../html/starters.html" class="menu-link-card">
+                    <div class="card-content">
+                        <i class="fas fa-utensils fa-2x"></i>
+                        <h3>Starters</h3>
+                    </div>
+                </a>
+    
+                <a href="maincourse.html" class="menu-link-card">
+                    <div class="card-content">
+                        <i class="fas fa-drumstick-bite fa-2x"></i>
+                        <h3>Main Course</h3>
+                    </div>
+                </a>
+    
+                <a href="desserts.html" class="menu-link-card">
+                    <div class="card-content">
+                        <i class="fas fa-ice-cream fa-2x"></i>
+                        <h3>Desserts</h3>
+                    </div>
+                </a>
+    
+                <a href="beverages.html" class="menu-link-card">
+                    <div class="card-content">
+                        <i class="fas fa-coffee fa-2x"></i>
+                        <h3>Beverages</h3>
+                    </div>
+                </a>
+    
+                <a href="indian-thali.html" class="menu-link-card">
+                    <div class="card-content">
+                        <i class="fas fa-concierge-bell fa-2x"></i>
+                        <h3>Indian Thali</h3>
+                    </div>
+                </a>
+    
+                <a href="chinese.html" class="menu-link-card">
+                    <div class="card-content">
+                        <i class="fas fa-bowl-rice fa-2x"></i>
+                        <h3>Chinese</h3>
+                    </div>
+                </a>
+    
+                <a href="continental.html" class="menu-link-card">
+                    <div class="card-content">
+                        <i class="fas fa-burger fa-2x"></i>
+                        <h3>Continental</h3>
+                    </div>
+                </a>
+    
+                <a href="south-indian.html" class="menu-link-card">
+                    <div class="card-content">
+                        <i class="fas fa-leaf fa-2x"></i>
+                        <h3>South Indian</h3>
+                    </div>
+                </a>
+    
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- about Section -->
+    <section id="about" style="background: linear-gradient(to right, #f9f9f9, #e6f0ff); 
+    padding: 60px 20px;">
+        <div class="container">
+            <h2 style="color: #2C3E50;">Experience the Essence of Paradise</h2>
+            <p style="font-size: 18px; color: #444;">
+                Nestled in the heart of Bhavnagar, Hotel RAA Paradise is more than just a place to stay—it's a journey
+                into elegance, comfort, and personalized hospitality.
+                <br><br>
+                For over a decade, we’ve redefined luxury with stunning accommodations, fine dining experiences, and
+                impeccable service. Whether you're here for business, a romantic getaway, or a family vacation, our team
+                is committed to creating memorable moments just for you.
+                <br><br>
+                Step into paradise. Let us make your stay unforgettable.
+            </p>
+        </div>
+    </section>
+
+
+
+    <!-- Facilities Section -->
+    <section id="Facilities">
+        <h3>Hotel Facilities:</h3>
+        <div class="facility">
+            <img src="../images/spool.jpg" alt="Outdoor swimming pool" />
+            <h3>Outdoor Swimming Pool</h3>
+            <p>Enjoy a refreshing swim or relax poolside with a drink in hand at our stunning outdoor pool.</p>
+        </div>
+        <div class="facility">
+            <img src="../images/restaurant1.jpg" alt="World-class restaurant" />
+            <h3>World-class Dining</h3>
+            <p>Our in-house restaurant serves a variety of international and local delicacies prepared by top chefs.</p>
+        </div>
+        <div class="facility">
+            <img src="../images/spa1.jpg" alt="Luxurious spa services" />
+            <h3>Spa and Wellness Center</h3>
+            <p>Indulge in a wide range of rejuvenating treatments at our luxurious spa for ultimate relaxation.</p>
+        </div>
+        <div class="facility">
+            <img src="../images/gym1.jpg" alt="State-of-the-art gym" />
+            <h3>Fully-equipped Gym</h3>
+            <p>Keep fit during your stay with our state-of-the-art fitness center equipped with modern workout machines.
+            </p>
+        </div>
+        <div class="facility">
+            <img src="../images/Meeting.jpg" alt="Conference rooms" />
+            <h3>Meeting and Event Rooms</h3>
+            <p>Our well-equipped meeting and event spaces are perfect for conferences, seminars, and private events.</p>
+        </div>
+        <div class="facility">
+            <img src="../images/Shuttle1.jpg" alt="Airport shuttle service" />
+            <h3>Airport Shuttle</h3>
+            <p>Enjoy complimentary shuttle service to and from the airport for all our guests' convenience.</p>
+        </div>
+    </section>
+
+    <!-- Hotel Menu Section -->
+    <section id="hotel-menu">
+        <div class="container">
+            <h2>today's Hotel special dish</h2>
+            <div class="menu-item">
+                <img src="../images/Signature Dish.jfif" alt="Delicious meal" />
+                <h3>Signature Dish</h3>
+                <p>A delectable dish prepared with the finest ingredients. $25</p>
+            </div>
+            <div class="menu-item">
+                <img src="../images/Fresh Garden Salad.jfif" alt="Healthy Salad" />
+                <h3>Fresh Garden Salad</h3>
+                <p>Freshly prepared with seasonal vegetables, perfect for a light and healthy meal. $15</p>
+            </div>
+            <div class="menu-item">
+                <img src="../images/cake.jfif" alt="Dessert" />
+                <h3>Chocolate Lava Cake</h3>
+                <p>Indulge in a warm, gooey chocolate cake served with vanilla ice cream. $10</p>
+            </div>
+            <div class="menu-item">
+                <img src="../images/Fresh Fruit Juices.jfif" alt="Beverages" />
+                <h3>Fresh Fruit Juices</h3>
+                <p>Refresh yourself with our freshly squeezed juices made from organic fruits. $8</p>
+            </div>
+            <div class="menu-item">
+                <img src="../images/Traditional Indian Thali.jfif" alt="Traditional Dish" />
+                <h3>Traditional Indian Thali</h3>
+                <p>A classic Indian platter with a variety of flavors, served with rice, bread, and curries. $40</p>
+            </div>
+        </div>
+        <!--review section-->
+        <section id="reviews" style="background-color: #fff; padding: 40px 20px; text-align: center;">
+            <h2>What Our Guests Say</h2>
+
+            <div class="review-cards-container" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+
+                <!-- Review Card 1 -->
+                <div class="review-card"
+                    style="width: 300px; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px; text-align: center;">
+                    <img src="../images/review2.jfif" alt="Priya S."
+                        style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px;">
+                    <p>"Excellent service and beautiful rooms!"</p>
+                    <div class="stars" style="font-size: 18px; color: #ffcc00;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>- Priya S.</p>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="review-card"
+                    style="width: 300px; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px; text-align: center;">
+                    <img src="../images/review3.jfif" alt="John D."
+                        style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px;">
+                    <p>"Food was top notch. Loved the ambiance!"</p>
+                    <div class="stars" style="font-size: 18px; color: #ffcc00;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>- John D.</p>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="review-card"
+                    style="width: 300px; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px; text-align: center;">
+                    <img src="../images/review5.jfif" alt="Emma W."
+                        style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px;">
+                    <p>"An unforgettable experience! Highly recommend!"</p>
+                    <div class="stars" style="font-size: 18px; color: #ffcc00;">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>- Emma W.</p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Scroll to Top Button -->
+        <button id="scrollTopBtn" style="display: none; position: fixed; bottom: 20px; right: 20px;
+       background-color: #f1c40f; border: none; color: white; font-size: 16px; padding: 10px 20px; border-radius: 50%;
+        cursor: pointer;">
+            ↑
+        </button>
+
+
+    </section>
+    <div class="testimonial-slider">
+        <div class="slide">"Awesome stay!" – Sarah</div>
+        <div class="slide">"Loved the food!" – Mike</div>
+        <div class="slide">"Very comfy beds!" – Emma</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll(".slide");
+        let index = 0;
+
+        function showSlide(i) {
+            slides.forEach((slide, idx) => {
+                slide.style.display = idx === i ? "block" : "none";
+            });
+        }
+
+        setInterval(() => {
+            index = (index + 1) % slides.length;
+            showSlide(index);
+        }, 3000);
+
+        showSlide(index);
+    </script>
+
+    <!-- Nearby Hotels Section -->
+    <section id="nearby-hotels">
+        <div class="container">
+            <h2>Nearby Hotels in Bhavnagar</h2>
+            <div class="nearby-hotel">
+                <h3>Nilambag Palace Hotel</h3>
+                <p>A heritage hotel set in a former palace, featuring traditional architecture, lush gardens, and a
+                    tennis court.</p>
+                <a href="https://www.nilambagpalace.com" target="_blank" class="book-now-btn">Visit Website</a>
+            </div>
+            <div class="nearby-hotel">
+                <h3>Hotel iscon</h3>
+                <p>Known for its moderhttps://www.fernhotels.com/n facilities and comfortable accommodations, suitable
+                    for both business and leisure travelers.</p>
+                <a href=" https://www.fernhotels.com" target="_blank" class="book-now-btn">Visit Website</a>
+            </div>
+            <div class="nearby-hotel">
+                <h3>The Basil Park</h3>
+                <p>Offers well-furnished rooms, a garden, and is located near the city center for easy access to local
+                    sites.</p>
+                <a href="http://www.thebasilpark.com" target="_blank" class="book-now-btn">Visit Website</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Optionally, you can add a Google Map -->
+    <section id="hotel-location">
+        <div class="container">
+            <h2>Hotel Location</h2>
+            <p>See our location and nearby attractions:</p>
+            <iframe src="https://www.google.com/maps/embed/v1/place?q=Hotel+RAA+Paradise&key=YOUR_GOOGLE_MAPS_API_KEY"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+
+    <a href="tel:+1234567890" class="call-button">Call Now</a>
+
+
+
+
+    <!-- Con Sign In Section -->
+    <section id="signin">
+        <div class="contact-signin-container">
+            <div class="contact-container">
+                <h2>Contact Us</h2>
+                <p>For bookings or inquiries, please reach out to us at:</p>
+                <p>Email: RAAhotel@gmail.com</p>
+                <p>Phone: 123-456-7890</p>
+            </div>
+
+            <div class="signin-container">
+                <h2>Hotel Sign In</h2>
+                <form action="/login" method="POST">
+                    <input type="text" name="username" class="input-field" placeholder="Username" required>
+                    <input type="password" name="password" class="input-field" placeholder="Password" required>
+                    <button type="submit" class="login-button">Sign In</button>
+                </form>
+                <div class="forgot-password">
+                    <a href="/forgot-password">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Check login status on page load
+        let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+        // Sticky booking bar on scroll
+        window.addEventListener('scroll', function () {
+            const bookingBar = document.getElementById("booking-bar");
+            if (bookingBar) {
+                bookingBar.classList.toggle("sticky", window.scrollY > 200);
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Initialize flatpickr
+            const checkin = flatpickr("#checkin", {
+                minDate: "today",
+                onChange: function (selectedDates, dateStr, instance) {
+                    if (checkout) {
+                        checkout.set('minDate', dateStr);
+                    }
+                }
+            });
+
+            const checkout = flatpickr("#checkout", {
+                minDate: "today"
+            });
+
+            // Handle Book Now buttons
+            const bookButtons = document.querySelectorAll(".book-now-btn");
+
+            bookButtons.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const isExternal = btn.href && btn.href.startsWith("http");
+                    if (!isLoggedIn && !isExternal) {
+                        e.preventDefault();
+                        alert("Please sign in to book a room.");
+                        window.location.href = "#signin";
+                    }
+                });
+            });
+
+            // Testimonial slider
+            const slides = document.querySelectorAll(".slide");
+            let index = 0;
+
+            function showSlide(i) {
+                slides.forEach((slide, idx) => {
+                    slide.style.display = idx === i ? "block" : "none";
+                });
+            }
+
+            if (slides.length > 0) {
+                showSlide(index);
+                setInterval(() => {
+                    index = (index + 1) % slides.length;
+                    showSlide(index);
+                }, 3000);
+            }
+
+            // Simulated login
+            const loginForm = document.querySelector('#signin form');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    localStorage.setItem("isLoggedIn", "true");
+                    isLoggedIn = true;
+                    alert("Successfully signed in!");
+                    window.location.href = "#rooms";
+                });
+            }
+        });
+    </script>
+    <!--star review-->
+    <script>
+        // Get the button
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        // When the user clicks on the button, scroll to the top of the document
+        scrollTopBtn.onclick = function () {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+    </script>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Hotel RAA Paradise. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>
